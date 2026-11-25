@@ -19,6 +19,7 @@ To guide deterministic AP axis formation via localized chemical gradients, three
 **Sensitivity to Incomplete Medium Washout:** Exchanging only $50\ \mu\text{L}$ rather than the full $150\ \mu\text{L}$ well volume after the CHIR pulse impaired $144\ \text{h}$ AA axial extension, indicating that residual post-pulse CHIR retention and metabolic waste accumulation inhibit late-stage elongation.
 
 Fig2. Effect of chiron concentration and culture volume on gastruloids a. Axial morphogenesis of gastruloids at 144h AA. TLC (TCF/LEF:: mCherry), SBr (T/Bra:mCherry).
+
 ![CHR effect](figures/Fig2_Effect_of_CHR_conc_and volume.png)
 
 **Loss of Directional Polarization in Static Microfluidic Gradients:** Plugging the Chip No. 3 outlet with $2.5\%$ PEG hydrogel to isolate a CHIR-supplemented left channel from a fresh-medium right channel induced transient SBr elongation at $96\ \text{h}$ AA that vanished by $120\ \text{h}$ AA, which was hypothesized to result from free rotational Brownian motion scrambling gastruloid orientation inside the chamber.
