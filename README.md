@@ -1,21 +1,9 @@
 # Mechanistic Modelling of Microfluidic Gastruloid Symmetry Breaking & Morphogenesis
 
-[![Open Notebook In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bbearAnna/Gastruloid-digital-twin-showcase/blob/main/01_morphology_and_chir_equilibration.ipynb)
+[![Open Notebook In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bbearAnna/Gastruloid-digital-twin-showcase/blob/main/gastruloid-microfluidics-modeling)
+
 
 This computational biology project builds a mechanistic *in silico* framework directly extending experimental microfluidics research conducted in the Laboratory of Stem Cell Bioengineering (LSCB) at EPFL (*Study of Gastruloid Self-organization through Spatiotemporal Control of Wnt Activation Using Microfluidics*). It serves as a quantitative stepping stone toward data-constrained developmental digital twins by coupling automated bioimage morphometry, continuum transport PDEs, stochastic biophysics, and experimental parameter inference.
-
----
-
-## Repository Structure & Quick Start
-
-Click either **Open in Colab** badge above and select **Runtime → Run all** (uses standard scientific Python pre-installed in Google Colab; runtime < 20 seconds per notebook).
-
-```text
-├── 01_morphology_and_chir_equilibration.ipynb   # Medial-axis morphometry, FVM diffusion & ODE data fitting
-├── 02_brownian_and_flow_digital_twin.ipynb      # Turing PDE + rotational SDE & 2D perfusion/pinning design
-├── figures/                                     # Experimental context & generated simulation figures
-└── README.md
-```
 
 ---
 
@@ -33,15 +21,8 @@ To guide deterministic AP axis formation via localized chemical gradients, three
 * **Cell-Line Morphological Divergence (`TLC` vs. `SBr`):** Evaluated via ImageJ Maximum Inscribed Circle fitting, `SBr` (`T/Bra::mCherry`) and `TLC` (`TCF/LEF::mCherry`) aggregates displayed distinct axial geometries in 96-well plates (`SBr` reaching greater total axial length yet often lower classical Elongation Index), while under homogeneous 24 h on-chip CHIR99021 pulses ($0.5\times = 1.18\ \mu\text{M}$ and $0.7\times = 1.66\ \mu\text{M}$), `TLC` elongated by 144 h AA whereas `SBr` failed to elongate significantly.
 * **Sensitivity to Incomplete Medium Washout:** Exchanging only 50 µL rather than the full 150 µL well volume after a 24 h CHIR99021 pulse impaired 144 h AA axial extension, indicating that residual post-pulse CHIR99021 retention inhibits late-stage elongation.
 
-**Figure 2.** *Experimental effect of CHIR99021 concentration ($0.2\times\text{--}5\times$) and well volume (75 µL vs. 150 µL) on `TLC` (`TCF/LEF::mCherry`) and `SBr` (`T/Bra::mCherry`) axial morphogenesis at 144 h AA ($n = 6$).*
-
-![CHR_effect](figures/Fig2_Effect_of_CHR_conc_and_volume.png)
 
 * **Loss of Directional Polarization in Static Microfluidic Gradients:** Plugging the Chip No. 3 outlet with 2.5% PEG hydrogel to isolate a CHIR99021-supplemented left channel from a fresh-medium right channel induced transient `SBr` elongation at 96 h AA that vanished by 120 h AA, hypothesized to result from free rotational Brownian motion inside the chamber.
-
-**Figure 3.** *Experimental on-chip culture and gradient setup in microfluidic Chip No. 3.*
-
-![Gastruloid-on-a-chip](figures/Fig3_Gastruloid_in_the_chip.png)
 
 ---
 
@@ -52,35 +33,35 @@ To disentangle diffusive bottlenecks, morphometric bias, rotational mechanics, a
 ### 1. Unbiased Cell-Line Morphometry (`SBr` vs. `TLC`)
 Classical Elongation Index ($L/D_{\max}$) underestimates `SBr` axial extension because `SBr` retains a bulbous anterior head alongside a narrow posterior tail, whereas `TLC` narrows globally with C-axis bending. Benchmarked on noisy brightfield/fluorescence phantoms mimicking both phenotypes, Euclidean Distance Transform (EDT) and graph-geodesic skeletonization extract continuous diameter profiles $D(s)$, **Mean-Width EI** ($L/\overline{D}$), and **AP Tapering Asymmetry** ($\mathcal{T}_{AP}$), resolving this paradox.
 
-**Figure 4.** *Automated medial-axis morphometry resolves cell-line elongation differences (`TLC` vs. `SBr`).* **(A–B)** Otsu segmentation, geodesic spines, and EDT inscribed circles on synthetic 144 h AA phantoms. **(C)** Continuous AP diameter profiles $D(s)$. **(D)** Multi-parametric morphological fingerprint ($n = 12$ per group).
+**Figure 2.** *Automated medial-axis morphometry resolves cell-line elongation differences (`TLC` vs. `SBr`).* **(A–B)** Otsu segmentation, geodesic spines, and EDT inscribed circles on synthetic 144 h AA phantoms. **(C)** Continuous AP diameter profiles $D(s)$. **(D)** Multi-parametric morphological fingerprint ($n = 12$ per group).
 
 ![Morphometry](figures/fig1_sbr_vs_tlc_morphology.png)
 
 ### 2. CHIR99021 Transport & Equilibration (96-Well vs. Static Chip)
 Unmixed 96-well vertical diffusion ($D = 1.80\ \text{mm}^2/\text{h}$ at 37 °C) equilibrates (<5% top–bottom difference) in **~3.4 h** (150 µL) or **~0.85 h** (75 µL) at $1.0\times C_{\text{applied}}$. In static Chip No. 3, mass-conserving 1D finite-volume simulations show that narrow supply arms bottleneck diffusion—erasing **>75% of the cross-gastruloid gradient within ~8–12 h**, equilibrating to **$0.50\times C_{\text{left}}$**, and delaying post-pulse washout (selectively arresting `SBr`). Joint dose–response analysis identifies **$C_{\text{ideal}} = 1.35\ \mu\text{M}$** ($C_{\text{left}} = 2.70\ \mu\text{M}$ in a symmetric gradient chip) as optimal.
 
-**Figure 5.** *CHIR99021 equilibration kinetics and matched-concentration dose response.* **(A)** 96-well vertical diffusion. **(B)** Static Chip No. 3 midpoint equilibration and cross-organoid $\Delta C$ decay. **(C)** Matched-concentration comparison and optimal target dose.
+**Figure 3.** *CHIR99021 equilibration kinetics and matched-concentration dose response.* **(A)** 96-well vertical diffusion. **(B)** Static Chip No. 3 midpoint equilibration and cross-organoid $\Delta C$ decay. **(C)** Matched-concentration comparison and optimal target dose.
 
 ![Equilibration](figures/fig2_chir_equilibration_and_optimum.png)
 
 ### 3. Experimental ODE Calibration, Out-of-Sample Validation & Sensitivity Analysis
 To anchor the kinetics in experimental measurements, a structurally identifiable 4-parameter ODE model ($k_{\text{pol}}, k_{\text{stress}}, v_{\text{ext}}, k_{\text{ret}}$) was fitted via constrained nonlinear least squares (`scipy.optimize.least_squares`) to 15 experimental timepoints per cell line across $0.2\times\text{--}5\times$ CHIR99021 and 18–48 h pulses ($R^2 = 0.90$ for `TLC`, $R^2 = 0.86$ for `SBr`). Tested **without refitting** on the held-out 50 µL partial medium-exchange experiment, the calibrated model accurately predicts 144 h AA elongation arrest (615 µm predicted vs. 605 µm observed in `TLC`; 767 µm vs. 770 µm in `SBr`). Local sensitivity analysis ($\partial \ln L_{144} / \partial \ln p_i$) demonstrates a regime shift from polarization-limited growth ($k_{\text{pol}}$) at $0.2\times$ CHIR99021 to over-saturation stress dominance ($k_{\text{stress}} = -1.26$) under 48 h exposure.
 
-**Figure 6.** *Experimental ODE calibration, zero-refit validation, and parameter sensitivity.* **(A–B)** Least-squares fits to experimental `TLC` and `SBr` 96-well trajectories (96–144 h AA) plus zero-refit predictions for held-out 50 µL partial washout (black stars/dashed curve). **(C)** Local normalized sensitivity heatmap across dosing regimes.
+**Figure 4.** *Experimental ODE calibration, zero-refit validation, and parameter sensitivity.* **(A–B)** Least-squares fits to experimental `TLC` and `SBr` 96-well trajectories (96–144 h AA) plus zero-refit predictions for held-out 50 µL partial washout (black stars/dashed curve). **(C)** Local normalized sensitivity heatmap across dosing regimes.
 
 ![Experimental Fit](figures/fig5_experimental_fit_and_sensitivity.png)
 
 ### 4. Biophysical Test of the Rotational Brownian Motion Hypothesis
 Evaluating Stokes–Einstein–Debye rotational diffusion for a $R = 125\ \mu\text{m}$ gastruloid at 37 °C yields $D_{\text{rot}}^{\text{thermal}} = 4.55\times 10^{-4}\ \text{rad}^2/\text{h}$ ($8.5^\circ$ RMS drift over 24 h)—four orders of magnitude **too slow** to disrupt Turing gradient locking. Instead, coupling a periodic Gierer–Meinhardt Wnt–antagonist PDE to Euler–Maruyama rotational SDEs shows that substrate-free active cell-migration and pipetting tumbling on non-adhesive 2% Pluronic-F127 ($D_{\text{rot}}^{\text{eff}} \sim 0.8\ \text{rad}^2/\text{h}$) randomizes AP pole alignment across replicates.
 
-**Figure 7.** *Biophysical falsification of pure thermal Brownian motion versus active tumbling.* **(A)** Angular trajectories $\phi(t)$. **(B)** Perimeter endogenous Wnt kymograph under tumbling. **(C)** Ensemble gradient alignment index ($n = 18$ per regime).
+**Figure 5.** *Biophysical falsification of pure thermal Brownian motion versus active tumbling.* **(A)** Angular trajectories $\phi(t)$. **(B)** Perimeter endogenous Wnt kymograph under tumbling. **(C)** Ensemble gradient alignment index ($n = 18$ per regime).
 
 ![Brownian Test](figures/fig3_brownian_hypothesis_test.png)
 
 ### 5. Microfluidic Perfusion & Hydrodynamic Pillar-Pinning Design
 Solving the 2D upwind advection–diffusion PDE and Stokes/gap-suction mechanics across Chip No. 3 shows that flanking perfusion at **$Q_{\text{side}} \ge 25\text{--}30\ \mu\text{L/h}$** clamps a $\ge 95\%$ constant gradient within **~36 min** (95% steady state), while a gentle central holding withdrawal of **$Q_{\text{hold}} = 2\text{--}6\ \mu\text{L/h}$** seats the gastruloid against 50 µm PDMS pillars ($<5^\circ$ wobble, >80% gradient retention, and <2.5 mPa wall shear stress).
 
-**Figure 8.** *2D perfusion gradient clamping and hydrodynamic pillar-pinning operating window.* **(A)** Steady-state 2D CHIR99021 field ($Q_{\text{side}} = 30\ \mu\text{L/h}$, $Q_{\text{hold}} = 3\ \mu\text{L/h}$). **(B)** Flanking flow sweep. **(C)** Transient startup equilibration. **(D)** Central pillar-pinning window versus direct cross-flow washout.
+**Figure 6.** *2D perfusion gradient clamping and hydrodynamic pillar-pinning operating window.* **(A)** Steady-state 2D CHIR99021 field ($Q_{\text{side}} = 30\ \mu\text{L/h}$, $Q_{\text{hold}} = 3\ \mu\text{L/h}$). **(B)** Flanking flow sweep. **(C)** Transient startup equilibration. **(D)** Central pillar-pinning window versus direct cross-flow washout.
 
 ![Flow Design](figures/fig4_flow_and_pinning_design.png)
 
