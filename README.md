@@ -34,28 +34,42 @@ Although the experimental study proposed integrating pump-driven perfusion in fu
 
 1. **Cell-Line Morphometry (`SBr` vs. `TLC`):** Classical Elongation Index ($L/D_{\max}$) underestimates `SBr` (`T/Bra::mCherry`) axial extension because `SBr` retains a bulbous anterior head alongside a narrow posterior tail, whereas `TLC` (`TCF/LEF::mCherry`) narrows globally with C-axis bending. Medial-axis Euclidean Distance Transform profiling ($D(s)$, Mean-Width EI, AP Tapering $\mathcal{T}_{AP}$, and Tail Fraction) resolves this paradox.
 
-<ins> Fig4. Cell line morphology comparison and quantification. </ins>
+<ins> Fig4. Automated Medial-Axis Morphometry Resolves Cell-Line Elongation Differences (TLC vs. SBr) </ins> A-B. Automated Segmentation & Inscribed-Circle Spine Overlays.  C. Continuous Anterior–Posterior Width Profiles $D(s)$ D. Multi-Parametric Morphological Fingerprint, $n = 12$ per group.
    
 ![Morphometry](figures/fig1_sbr_vs_tlc_morphology.png)
    
 2. **CHIR99021 Transport & Ideal Dosing (96-Well vs. Static Chip):** Unmixed 96-well vertical gradients disappear in **~3.4 h** ($150\ \mu\text{L}$) or **~0.85 h** ($75\ \mu\text{L}$) at $1.0\times C_{\text{applied}}$. In static Chip No. 3, narrow supply channels bottleneck diffusion—erasing **>75% of the cross-gastruloid gradient within ~8–12 h**, equilibrating to **$0.50\times C_{\text{left}}$**, and delaying post-pulse washout (selectively arresting `SBr`). Joint biphasic modeling identifies **$C_{\text{ideal}} = 1.35\ \mu\text{M}$** ($C_{\text{left}} = 2.70\ \mu\text{M}$) as optimal.
 
-<ins> Fig5. CHIR99021 concentration equilibration. </ins>
+<ins> Fig5. CHIR99021 Equilibration Kinetics & Matched-Concentration Dose Response. </ins> A. 96-Well Vertical Diffusion Equilibration. B. Static Chip No. 3 Bottlenecked Gradient Decay. C. Matched-Concentration Comparison & Optimal Dose Selection.
 
 ![Equilibration](figures/fig2_chir_equilibration_and_optimum.png)
 
 3. **Biophysical Test of the Rotational Brownian Motion Hypothesis:** Stokes–Einstein–Debye thermal rotational diffusion of a $R = 125\ \mu\text{m}$ gastruloid ($D_{\text{rot}}^{\text{thermal}} = 4.55\times 10^{-4}\ \text{rad}^2/\text{h}$, $8.5^\circ$ RMS in 24 h) is **too slow** to disrupt gradient locking. Instead, zero-adhesion Pluronic-F127 coating permits active cellular migration and pipette-handling tumbling ($D_{\text{rot}}^{\text{eff}} \sim 0.8\ \text{rad}^2/\text{h}$), randomizing AP pole orientation.
 
-<ins> Fig6. In silico rotational Brownian motion hypothesis test . </ins>
+<ins> Fig6. Biophysical Falsification of Pure Thermal Brownian Motion vs. Active Tumbling. </ins> A. Rotational Trajectories $\phi(t)$ for $R = 125\ \mu\text{m}$ Gastruloids. B. Spatiotemporal Endogenous Wnt Kymograph Under Tumbling. C. Ensemble Gradient Alignment Index, $n = 18$ per regime.
 
 ![Brownian Test](figures/fig3_brownian_hypothesis_test.png)
 
 4. **Microfluidic Perfusion & Hydrodynamic Pinning Design:** 2D advection–diffusion and Stokes/gap-suction mechanics show that flanking perfusion at **$Q_{\text{side}} \ge 25\text{–}30\ \mu\text{L}/\text{h}$** establishes a $>95\%$ constant gradient within **~36 min** ($95\%$ steady state), while a gentle central pillar-trap holding flow of **$Q_{\text{hold}} = 2\text{–}6\ \mu\text{L}/\text{h}$** prevents gastruloid rotation ($<5^\circ$ wobble) without diluting the CHIR gradient or exceeding stem-cell shear limits ($<2.5\ \text{mPa}$).
 
-<ins> Fig7. In silico flow induction hypothesis test. </ins>
+<ins> Fig7. 2D Perfusion Gradient Clamping & Hydrodynamic Pillar-Pinning Window. </ins> A. Clamped 2D Steady-State CHIR99021 Field. B. Minimum Flanking Perfusion Rate $Q_{\text{side}}$. C. Transient Perfusion Startup Dynamics. D. Hydrodynamic Pillar-Pinning Operating Window.
 
 ![Flow Design](figures/fig4_flow_and_pinning_design.png)
 
+
+## Conclusion
+
+1. **Unbiased Morphometry:** Continuous EDT width profiles $D(s)$, Mean-Width EI ($L/\overline{D}$), and AP Tapering ($\mathcal{T}_{AP}$) resolve the bias of classical $L/D_{\max}$ against bulbous-headed SBr gastruloids.
+2. **Microfluidic Transport Limits:** Narrow static-chip supply arms lose $>75\%$ of the spatial CHIR gradient within $8\text{–}12\ \text{h}$ around a $0.50\,C_{\text{left}}$ midpoint and trap post-pulse CHIR, selectively arresting SBr; $C_{\text{ideal}} = 1.35\ \mu\text{M}$ ($C_{\text{left}} = 2.70\ \mu\text{M}$) optimizes elongation across both cell lines.
+3. **True Rotational Mechanism:** Pure thermal Brownian motion is four orders of magnitude too slow ($8.5^\circ$ over $24\ \text{h}$) to disrupt symmetry breaking; substrate-free active cellular and pipetting rotation on Pluronic-F127 causes directional washout.
+4. **Deterministic Flow Protocol:** Pairing $Q_{\text{side}} = 25\text{–}30\ \mu\text{L}/\text{h}$ flanking perfusion ($\sim 36\ \text{min}$ equilibration) with $Q_{\text{hold}} = 2\text{–}6\ \mu\text{L}/\text{h}$ central pillar pinning stabilizes both the CHIR gradient ($>80\%$) and organoid orientation ($<5^\circ$ drift, $<2.5\ \text{mPa}$ shear).
+
+## Future work
+
+1. **3D Cell-Based Mechanics:** Couple posterior Wnt/Brachyury signaling to 3D cell adhesion and cortical tension (SimuCell3D-style) to mechanistically simulate SBr head-bulb retention versus TLC trunk narrowing.
+2. **4D Live-Imaging Calibration:** Infer endogenous signaling kinetics and tissue surface tensions directly from 4D light-sheet/confocal time-lapse stacks of TLC and SBr reporters.
+3. **Opposing Counter-Gradients:** Pair posterior CHIR99021 with an anterior Wnt antagonist (e.g., XAV939/IWP2) to simultaneously induce anterior brain territories alongside posterior elongation.
+4. **On-Chip Pump Validation:** Test the $Q_{\text{side}} = 30\ \mu\text{L}/\text{h}$ and $Q_{\text{hold}} = 3\ \mu\text{L}/\text{h}$ operating window experimentally using $500\ \text{Da}$ fluorescent tracers and perfused gastruloids.   
 
 
 [^1]: Beccari, L., Moris, N., Girgin, M. et al. Multi-axial self-organization properties of mouse embryonic stem cells into gastruloids. Nature 562, 272–276 (2018).
