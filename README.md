@@ -71,5 +71,15 @@ Although the experimental study proposed integrating pump-driven perfusion in fu
 3. **Opposing Counter-Gradients:** Pair posterior CHIR99021 with an anterior Wnt antagonist (e.g., XAV939/IWP2) to simultaneously induce anterior brain territories alongside posterior elongation.
 4. **On-Chip Pump Validation:** Test the $Q_{\text{side}} = 30\ \mu\text{L}/\text{h}$ and $Q_{\text{hold}} = 3\ \mu\text{L}/\text{h}$ operating window experimentally using $500\ \text{Da}$ fluorescent tracers and perfused gastruloids.   
 
+## How Simulation Advances the Project
+
+While experimental validations are further required, mechanistic modelling turns empirical chip iteration into quantitative design:
+
+1. **Shortens Cleanroom Iteration:** Evaluates channel resistance, gradient lifetime, and shear stress in silico before photolithography and PDMS casting, avoiding multi-generation redesigns like Chip No. 1–3.
+2. **Separates Physics from Biology:** Pinpoints post-pulse CHIR retention behind on-chip SBr arrest and rules out thermal Brownian motion in favor of active/pipetting rotation on $2\%$ Pluronic-F127.
+3. **Automates Unbiased Morphometry:** Replaces manual ImageJ circle fitting with fast medial-axis $D(s)$ profiling, preventing false-negative readouts in bulbous-headed SBr aggregates.
+4. **Defines Exact Wet-Lab Setpoints:** Narrows pump testing to a concrete operating window ($C_{\text{left}} = 2.70\ \mu\text{M}$, $Q_{\text{side}} = 25\text{–}30\ \mu\text{L}/\text{h}$, $36\ \text{min}$ equilibration, and $Q_{\text{hold}} = 2\text{–}6\ \mu\text{L}/\text{h}$ pillar pinning).
 
 [^1]: Beccari, L., Moris, N., Girgin, M. et al. Multi-axial self-organization properties of mouse embryonic stem cells into gastruloids. Nature 562, 272–276 (2018).
+
+
